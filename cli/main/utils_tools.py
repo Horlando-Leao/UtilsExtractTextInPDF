@@ -76,10 +76,11 @@ def clear_text_file_non_ut8(path:str='', path_save:str='', extension:str='txt'):
 
             file_contents = file_txt.read()
             file_contents = file_contents.encode('utf-8','ignore').decode("utf-8")
-            file_content = str(file_contents).replace('\n', ' ')
+            file_contents = str(file_contents).replace('\n', ' ')
+            file_contents = str(file_contents).replace('"', '')
 
             with open(f'{path_save}/{str(uuid.uuid4())}.{extension}', 'w', encoding='utf8') as new_file_txt:
-                new_file_txt.write(file_content)
+                new_file_txt.write(file_contents)
 
 def make_database_for_prodigy(path_list_txt:str='', path_save_json:str='', extension_find_path='txt'):
 
