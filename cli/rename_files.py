@@ -6,7 +6,7 @@ Esse script recebe apenas dois argumentos posicionais:
 2=<extensão do arquivo para match>.
 """
 import sys
-from utils_tools import get_number_of_files, renames_all_files
+from main.utils_tools import get_number_of_files, renames_all_files
 
 sys.argv[0]='rename_files.py'
 

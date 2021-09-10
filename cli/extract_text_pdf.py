@@ -1,5 +1,5 @@
 import sys
-from utils_tools import extractPDF_text
+from main.utils_tools import extractPDF_text
 
 sys.argv[0]='extract_text_pdf.py'
 PATH_FILES = str(sys.argv[1]) #path directory with list of files

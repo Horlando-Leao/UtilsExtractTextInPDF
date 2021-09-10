@@ -1,5 +1,5 @@
 import sys
-from utils_tools import clear_text_file_non_ut8
+from main.utils_tools import clear_text_file_non_ut8
 
 sys.argv[0]='clear_text_txt.py'
 
