@@ -77,17 +77,18 @@ def clear_text_file_non_ut8(path: str = '', path_save: str = '', extension: str 
     list_files = get_list_name_files(path, extension)
 
     for file in list_files:
-        with open(f'{path}/{file}', 'r', encoding='utf8') as file_txt:
+        with open(f'{path}\\{file}', 'r', encoding='utf8') as file_txt:
 
             file_contents = file_txt.read()
             file_contents = file_contents.encode('utf-8', 'ignore').decode("utf-8")
             file_contents = str(file_contents)
 
-            for str_remove in list_str_garbage:
-                file_contents = file_contents.replace(str_remove, ' ')
+            if file_contents != '':
+                for str_remove in list_str_garbage:
+                    file_contents = file_contents.replace(str_remove, ' ')
 
-            with open(f'{path_save}/{str(uuid.uuid4())}.{extension}', 'w', encoding='utf8') as new_file_txt:
-                new_file_txt.write(file_contents)
+                with open(f'{path_save}/{str(uuid.uuid4())}.{extension}', 'w', encoding='utf8') as new_file_txt:
+                    new_file_txt.write(file_contents)
 
 
 def make_database_for_prodigy(path_list_txt: str, path_save_json: str, extension_find_path='txt'):
@@ -103,7 +104,7 @@ def make_database_for_prodigy(path_list_txt: str, path_save_json: str, extension
 
     for file in list_files_name:
         with open(f'{path_save_json}', 'a', encoding='utf8') as file_jsonl:
-            with open(f'{path_list_txt}/{file}', 'r', encoding='utf8') as file_txt:
+            with open(f'{path_list_txt}\\{file}', 'r', encoding='utf8') as file_txt:
                 file_contents = file_txt.read()
                 file_jsonl.write(format_jsonl_with_db_prodigy(file_contents))
 

@@ -15,4 +15,5 @@ EXTESION_FILES = str(sys.argv[2]).lower()# set extension pdf or doc or others, w
 
 if __name__ == '__main__' and get_number_of_files(PATH_FILES, EXTESION_FILES) > 0:
     renames_all_files(PATH_FILES, EXTESION_FILES)
+    print("Done!")
 
