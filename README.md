@@ -1,4 +1,4 @@
-# run __main__ execute all pipelines
+# run python all_pipelines execute all pipelines
 
 # other CLI 
 1. extrac_text_pdf : extrair texto de pdfs
