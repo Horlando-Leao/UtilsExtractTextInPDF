@@ -1,4 +1,4 @@
 1 renomear arquivos
 2 extrair texto de pdf para txt
-3 limpar texto e formatar
-4 construir arquivo base jsonl
+3 limpar texto e formatar (contexto de curriculos)
+4 construir arquivo jsonl com um lista de arquivos txt
