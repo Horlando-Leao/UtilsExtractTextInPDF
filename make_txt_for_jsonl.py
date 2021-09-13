@@ -1,5 +1,5 @@
 import sys
-from main.utils_tools import make_database_for_prodigy
+from pipeline_tools.main.utils_tools import make_database_for_prodigy
 
 sys.argv[0]='make_txt_for_jsonl.py'
 

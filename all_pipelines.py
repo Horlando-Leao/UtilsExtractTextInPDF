@@ -1,8 +1,8 @@
 import sys
-from cli.main.utils_tools import renames_all_files, extractPDF_text, clear_text_file_non_ut8
-from cli.main.utils_tools import make_database_for_prodigy, get_number_of_files
+from pipeline_tools.main.utils_tools import renames_all_files, extractPDF_text, clear_text_file_non_ut8
+from pipeline_tools.main.utils_tools import make_database_for_prodigy, get_number_of_files
 
-sys.argv[0] = '__main__.py'
+sys.argv[0] = 'all_pipelines.py'
 PATH_FILES_FIND_PDF = None
 PATH_FILES_TXT      = None
 PATH_SAVE_TXT_CLEAN = None
