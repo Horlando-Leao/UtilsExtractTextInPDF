@@ -2,56 +2,58 @@ import os
 import subprocess
 import uuid
 import platform
+from typing import Union, List
+import pathlib
 
 
-
-def get_list_name_files(APP_FOLDER: str, EXTESION_FILES: str) -> list:
+def get_list_name_files(app_folder: Union[str, pathlib.Path], extesion_files: str) -> List[str]:
     """Não suporte subdiretorios"""
 
-    NameFiles = []
+    name_files = []
 
-    for base, dirs, files in os.walk(APP_FOLDER):
+    for base, dirs, files in os.walk(app_folder):
         print('Searching files in : ', base)
         for Files in files:
-            if Files.lower().endswith(f'.{EXTESION_FILES}'):
-                NameFiles.append(Files)
+            if Files.lower().endswith(f'.{extesion_files}'):
+                name_files.append(Files)
 
-    return NameFiles
+    return name_files
 
 
-def get_number_of_files(APP_FOLDER: str, EXTESION_FILES: str) -> int:
+def get_number_of_files(app_folder: Union[str, pathlib.Path], extesion_files: str) -> int:
     """Não suporte subdiretorios"""
-    totalFiles = 0
+    total_files = 0
 
-    for base, dirs, files in os.walk(APP_FOLDER):
+    for base, dirs, files in os.walk(app_folder):
         print('Searching number of files in : ', base)
-        for Files in files:
-            if Files.lower().endswith(f'.{EXTESION_FILES}'):
-                totalFiles += 1
-    print('Total number of files', totalFiles)
+        for file in files:
+            if file.lower().endswith(f'.{extesion_files}'):
+                total_files += 1
+    print('Total number of files', total_files)
 
-    return int(totalFiles)
+    return int(total_files)
 
 
-def get_platform():
-    PLTAFORM = platform.system()
+def get_platform() -> str:
+    this_platform = platform.system()
 
-    if PLTAFORM == 'Windows':
+    if this_platform == 'Windows':
         return 'Windows'
-    elif PLTAFORM == 'Linux' or PLTAFORM == 'Linux2' or PLTAFORM == 'Linux3':
+    elif this_platform == 'Linux' or this_platform == 'Linux2' or this_platform == 'Linux3':
         return 'Linux'
     else:
         return 'Others Plataforms'
 
 
-def generate_file_bat(list_commands: list = [], path_save: str = "bin/windows/executable.bat"):
+def generate_file_bat(list_commands: List[str] = [],
+                      path_save: Union[str, pathlib.Path] = "bin/windows/executable.bat"):
     if len(list_commands) > 0:
         with open(path_save, 'w') as file_bat:
             for command in list_commands:
                 file_bat.write(f'{command}\n')
 
 
-def extractPDF_text(PATH_FILES: str):
+def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
     if get_platform() == 'Windows':
         try:
             list_files = get_list_name_files(PATH_FILES, 'pdf')
@@ -71,9 +73,10 @@ def extractPDF_text(PATH_FILES: str):
             raise FileNotFoundError("File executable.bat not found")
 
 
-def clear_text_file_non_ut8(path: str = '', path_save: str = '', extension: str = 'txt'):
+def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
+                            extension: str = 'txt'):
 
-    from pipeline_tools.main.variables_main import list_str_garbage
+    from pipeline_tools.variables_main import list_str_garbage
     list_files = get_list_name_files(path, extension)
 
     for file in list_files:
@@ -91,7 +94,8 @@ def clear_text_file_non_ut8(path: str = '', path_save: str = '', extension: str 
                     new_file_txt.write(file_contents)
 
 
-def make_database_for_prodigy(path_list_txt: str, path_save_json: str, extension_find_path='txt'):
+def make_database_for_prodigy(path_list_txt: Union[str, pathlib.Path], path_save_json: Union[str, pathlib.Path],
+                              extension_find_path='txt'):
     list_files_name = get_list_name_files(path_list_txt, extension_find_path)
 
     def format_jsonl_with_db_prodigy(content: str = ''):
@@ -109,7 +113,7 @@ def make_database_for_prodigy(path_list_txt: str, path_save_json: str, extension
                 file_jsonl.write(format_jsonl_with_db_prodigy(file_contents))
 
 
-def renames_all_files(path, extesion):
+def renames_all_files(path: Union[str, pathlib.Path], extesion : str):
     for file in get_list_name_files(path, extesion):
         old_name_file = f'{path}/{file}'
         new_name_file = f'{path}/{str(uuid.uuid4())}.{extesion}'

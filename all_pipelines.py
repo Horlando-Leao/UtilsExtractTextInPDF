@@ -1,6 +1,6 @@
 import sys
-from pipeline_tools.main.utils_tools import renames_all_files, extractPDF_text, clear_text_file_non_ut8
-from pipeline_tools.main.utils_tools import make_database_for_prodigy, get_number_of_files
+from pipeline_tools.utils_tools import renames_all_files, extract_text_on_pdf, clear_text_file_non_ut8
+from pipeline_tools.utils_tools import make_database_for_prodigy, get_number_of_files
 
 sys.argv[0] = 'all_pipelines.py'
 PATH_FILES_FIND_PDF = None
@@ -33,7 +33,7 @@ if __name__ == '__main__' and get_number_of_files(PATH_FILES_FIND_PDF, 'pdf') > 
 
     renames_all_files(PATH_FILES_FIND_PDF, 'pdf')
     
-    extractPDF_text(PATH_FILES_FIND_PDF)
+    extract_text_on_pdf(PATH_FILES_FIND_PDF)
 
     clear_text_file_non_ut8(PATH_FILES_TXT, PATH_SAVE_TXT_CLEAN, 'txt')
 
