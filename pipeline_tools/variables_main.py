@@ -119,4 +119,5 @@ dict_str_gargabe_with_str_replace: dict[str, str] = {
     "-": ' - ',
     " / ": '/',
     " \\ ": '\\',
+    "\uf0fc": " # "
 }
