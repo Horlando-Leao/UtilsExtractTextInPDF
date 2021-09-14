@@ -75,7 +75,6 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
 
 def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
                             extension: str = 'txt'):
-
     from pipeline_tools.variables_main import list_str_garbage
     list_files = get_list_name_files(path, extension)
 
@@ -113,8 +112,24 @@ def make_database_for_prodigy(path_list_txt: Union[str, pathlib.Path], path_save
                 file_jsonl.write(format_jsonl_with_db_prodigy(file_contents))
 
 
-def renames_all_files(path: Union[str, pathlib.Path], extesion : str):
+def renames_all_files(path: Union[str, pathlib.Path], extesion: str):
     for file in get_list_name_files(path, extesion):
         old_name_file = f'{path}/{file}'
         new_name_file = f'{path}/{str(uuid.uuid4())}.{extesion}'
         os.rename(old_name_file, new_name_file)
+
+
+def regex_replace_str(text: str, str_remove: list[str] or dict[str, str]) -> str:
+    """
+    Em desenvolvimento
+    @param text: str
+    @param str_remove: list or dict
+    @return: str
+    """
+    import re
+    if isinstance(str_remove, list):
+        print("list")
+    elif isinstance(str_remove, dict):
+        print("dict")
+    print(text)
+    return text

@@ -117,7 +117,9 @@ list_str_garbage: list[str] = [
 dict_str_gargabe_with_str_replace: dict[str, str] = {
     """Variable for replace str bad format in context of curriculum"""
     "-": ' - ',
+    "–": " – ",
     " / ": '/',
     " \\ ": '\\',
-    "\uf0fc": " # "
+    "\uf0fc": " # ",
+    "\u25aa": " # "
 }

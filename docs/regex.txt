@@ -1,0 +1,20 @@
+# Este snippet testado deve fazer isso:
+
+import re
+line = re.sub(r"</?\[\d+>", "", line)
+# Edit: Aqui está uma versão comentada explicando como funciona:
+
+line = re.sub(r"""
+  (?x) # Use free-spacing mode.
+  <    # Match a literal '<'
+  /?   # Optionally match a '/'
+  \[   # Match a literal '['
+  \d+  # Match one or more digits
+  >    # Match a literal '>'
+  """, "", line)
+
+# Regexes são divertidos! Mas eu recomendo fortemente passar uma ou duas horas estudando o básico.
+# Para começar, você precisa aprender quais caracteres são especiais: "metacaracteres" que precisam ser escapados
+# (ou seja, com uma barra invertida colocada na frente - e as regras são diferentes dentro e
+# fora das classes de caracteres). Há um excelente tutorial online em: www .regular-expression.info .
+# O tempo que você passar lá se pagará muitas vezes. Feliz regexing!
