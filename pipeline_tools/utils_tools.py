@@ -76,7 +76,7 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
 def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
                             extension: str = 'txt'):
     from pipeline_tools.tools_regex import clean_cv_underlines_with_space
-    from pipeline_tools.variables_main import list_str_garbage
+    from pipeline_tools.variables_main import list_str_garbage, dict_str_gargabe_with_str_replace
     list_files = get_list_name_files(path, extension)
 
     for file in list_files:
@@ -85,11 +85,16 @@ def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Unio
             file_contents = file_txt.read()
             file_contents = file_contents.encode('utf-8', 'ignore').decode("utf-8")
             file_contents = str(file_contents)
-            file_contents = clean_cv_underlines_with_space(file_contents)
 
             if file_contents != '':
+
+                file_contents = clean_cv_underlines_with_space(file_contents)
+
                 for str_remove in list_str_garbage:
                     file_contents = file_contents.replace(str_remove, ' ')
+
+                for str_find, str_rep in dict_str_gargabe_with_str_replace.items():
+                    file_contents = file_contents.replace(str_find, str_rep)
 
                 with open(f'{path_save}/{str(uuid.uuid4())}.{extension}', 'w', encoding='utf8') as new_file_txt:
                     new_file_txt.write(file_contents)

@@ -1,18 +1,14 @@
 """Module with variables large"""
 
 # List of strings with possibles garbage found in files txt that were extracted of pdf with pdfbox
-
-list_str_garbage: list[str] = [
-    """Variable for replace str bad format in context of curriculum """
+"""Variable for replace str bad format in context of curriculum """
+list_str_garbage: list = [
     '\n',
     '\r',
     '"',
     '}',
     '{',
     '_',
-    '',
-    '',
-    '',
     'Page 1 of 1',
     'Page 1 of 2',
     'Page 1 of 3',
@@ -114,17 +110,19 @@ list_str_garbage: list[str] = [
     '                                                                       ',
 ]
 
-dict_str_gargabe_with_str_replace: dict[str, str] = {
+dict_str_gargabe_with_str_replace = {
     """Variable for replace str bad format in context of curriculum"""
-    " / ": '/',
-    " \\ ": '\\',
     "\uf0fc": " # ",
     "\u25aa": " # ",
     "\uf0a7": " # ",
     "\uf0a1": " # ",
+    "": " # ",
+    "\u2022": " # ",
+    "\uf0b7": " # ",
 }
 
-dict_regex = {
-    "{str}-{str}": ' - ',
-    "{str}–{str}": " – ",
-}
+for str_find, str_rep in dict_str_gargabe_with_str_replace.items():
+    print(str_find, str_rep)
+    line = line.replace(str_find, str_rep)
+
+print(line)
