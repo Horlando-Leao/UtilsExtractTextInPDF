@@ -120,9 +120,3 @@ dict_str_gargabe_with_str_replace = {
     "\u2022": " # ",
     "\uf0b7": " # ",
 }
-
-for str_find, str_rep in dict_str_gargabe_with_str_replace.items():
-    print(str_find, str_rep)
-    line = line.replace(str_find, str_rep)
-
-print(line)
