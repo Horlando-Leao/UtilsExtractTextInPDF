@@ -75,6 +75,7 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
 
 def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
                             extension: str = 'txt'):
+    from pipeline_tools.tools_regex import clean_cv_underlines_with_space
     from pipeline_tools.variables_main import list_str_garbage
     list_files = get_list_name_files(path, extension)
 
@@ -84,6 +85,7 @@ def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Unio
             file_contents = file_txt.read()
             file_contents = file_contents.encode('utf-8', 'ignore').decode("utf-8")
             file_contents = str(file_contents)
+            file_contents = clean_cv_underlines_with_space(file_contents)
 
             if file_contents != '':
                 for str_remove in list_str_garbage:
@@ -119,17 +121,3 @@ def renames_all_files(path: Union[str, pathlib.Path], extesion: str):
         os.rename(old_name_file, new_name_file)
 
 
-def regex_replace_str(text: str, str_remove: list[str] or dict[str, str]) -> str:
-    """
-    Em desenvolvimento
-    @param text: str
-    @param str_remove: list or dict
-    @return: str
-    """
-    import re
-    if isinstance(str_remove, list):
-        print("list")
-    elif isinstance(str_remove, dict):
-        print("dict")
-    print(text)
-    return text
