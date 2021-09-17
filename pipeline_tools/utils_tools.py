@@ -81,7 +81,7 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
 def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
                             extension: str = 'txt'):
 
-    from pipeline_tools.tools_regex import clean_cv_underlines_with_space
+    from pipeline_tools.tools_regex import clean_cv_underlines_with_space, clean_cv_paratenses_with_space
     from pipeline_tools.variables_main import list_str_garbage, dict_str_gargabe_with_str_replace
 
     list_files = get_list_name_files(path, extension)
@@ -96,6 +96,7 @@ def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Unio
             if file_contents != '':
 
                 file_contents = clean_cv_underlines_with_space(file_contents)
+                file_contents = clean_cv_paratenses_with_space(file_contents)
 
                 for str_remove in list_str_garbage:
                     file_contents = file_contents.replace(str_remove, ' ')

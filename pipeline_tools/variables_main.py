@@ -175,14 +175,14 @@ list_str_garbage: list = [
 ]
 
 dict_str_gargabe_with_str_replace = {
-    """Variable for replace str bad format in context of curriculum"""
+    # Variable for replace str bad format in context of curriculum
+    "": " # ",
     "\uf0fc": " # ",
     "\u25aa": " # ",
     "\uf0a7": " # ",
     "\uf0a1": " # ",
-    "": " # ",
     "\u2022": " # ",
     "\uf0b7": " # ",
-    "%u2713": " # ",
-    "\x13": " # "
+    "\x13": " # ",
+    "\u27a2": " # ",
 }
