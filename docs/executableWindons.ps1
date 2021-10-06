@@ -6,6 +6,6 @@
 
 
 
-python __main__.py cvs_database cvs_database cvs_database/cv_clean cvs_database/cv_clean/database.jsonl
-python .\cli\make_txt_for_jsonl.py ..\cv_aundes_txt\cv_clean\ ..\cv_aundes_txt\database.jsonl
-python .\cli\clear_text_txt.py ..\cv_aundes_txt ..\cv_aundes_txt\cv_clean
+python __main__.py folder_test folder_test folder_test/folder_test database.jsonl
+python .\cli\make_txt_for_jsonl.py ..\folder_test\folder_test\ ..\folder_test\database.jsonl
+python .\cli\clear_text_txt.py ..\folder_test ..\folder_test\folder_test
