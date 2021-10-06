@@ -22,7 +22,6 @@ def get_list_name_files(app_folder: Union[str, pathlib.Path], extesion_files: st
 
 def get_number_of_files(app_folder: Union[str, pathlib.Path], extesion_files: str) -> int:
     """Não suporte subdiretorios"""
-
     total_files = 0
 
     for base, dirs, files in os.walk(app_folder):
@@ -48,16 +47,13 @@ def get_platform() -> str:
 
 def generate_file_bat(list_commands: List[str] = [],
                       path_save: Union[str, pathlib.Path] = "bin/windows/executable.bat"):
-
     if len(list_commands) > 0:
         with open(path_save, 'w') as file_bat:
-            file_bat.write("echo off\n")
             for command in list_commands:
                 file_bat.write(f'{command}\n')
 
 
 def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
-
     if get_platform() == 'Windows':
         try:
             list_files = get_list_name_files(PATH_FILES, 'pdf')
@@ -67,7 +63,6 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
                     f'START /WAIT java -jar ./bin/java/pdfbox-app-2.0.19.jar ExtractText {PATH_FILES}/{file}')
 
             generate_file_bat(list_commands)
-
             try:
                 path_bat = os.path.abspath("bin/windows/executable.bat")
                 subprocess.call([r'{0}'.format(path_bat)])
@@ -80,10 +75,8 @@ def extract_text_on_pdf(PATH_FILES: Union[str, pathlib.Path]):
 
 def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Union[str, pathlib.Path] = '',
                             extension: str = 'txt'):
-
-    from pipeline_tools.tools_regex import clean_cv_underlines_with_space, clean_cv_paratenses_with_space
+    from pipeline_tools.tools_regex import clean_cv_underlines_with_space
     from pipeline_tools.variables_main import list_str_garbage, dict_str_gargabe_with_str_replace
-
     list_files = get_list_name_files(path, extension)
 
     for file in list_files:
@@ -96,7 +89,6 @@ def clear_text_file_non_ut8(path: Union[str, pathlib.Path] = '', path_save: Unio
             if file_contents != '':
 
                 file_contents = clean_cv_underlines_with_space(file_contents)
-                file_contents = clean_cv_paratenses_with_space(file_contents)
 
                 for str_remove in list_str_garbage:
                     file_contents = file_contents.replace(str_remove, ' ')
@@ -113,11 +105,9 @@ def make_database_for_prodigy(path_list_txt: Union[str, pathlib.Path], path_save
     list_files_name = get_list_name_files(path_list_txt, extension_find_path)
 
     def format_jsonl_with_db_prodigy(content: str = ''):
-
         open_str = '{"text":"'
         middle_str = str(content)
         close_str = '"}\n'
-
         return f'{open_str}{middle_str}{close_str}'
 
     print(list_files_name)
@@ -130,7 +120,6 @@ def make_database_for_prodigy(path_list_txt: Union[str, pathlib.Path], path_save
 
 
 def renames_all_files(path: Union[str, pathlib.Path], extesion: str):
-
     for file in get_list_name_files(path, extesion):
         old_name_file = f'{path}/{file}'
         new_name_file = f'{path}/{str(uuid.uuid4())}.{extesion}'

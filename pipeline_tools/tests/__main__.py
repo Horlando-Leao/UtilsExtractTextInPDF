@@ -67,7 +67,7 @@ class TestUtilsTools(TestCase):
                                 path_save=path_files_clean)
 
         first_file = os.listdir(path_files_clean)[0]
-
+        print(first_file)
         with open(f'pipeline_tools/tests/folder_tests/files_clean/{first_file}', 'r', encoding='utf8') as file_clean:
             value_input = file_clean.read()
 
@@ -76,7 +76,7 @@ class TestUtilsTools(TestCase):
     def test_generate_file_bat(self):
         """test_generate_file_bat"""
         value_input = None
-        value_expected = 'echo off\necho "hello world"\necho "hello marte"\necho "hello venus"\n'
+        value_expected = 'echo "hello world"\necho "hello marte"\necho "hello venus"\n'
 
         commands = ['echo "hello world"', 'echo "hello marte"', 'echo "hello venus"']
         path = 'pipeline_tools/tests/folder_tests/bin/windows/executable.bat'
